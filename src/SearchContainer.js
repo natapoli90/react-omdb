@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import Search from './Search'
-import Results from './Results.js'
-import {queryOmdb} from './Utils.js'
+import Results from './Results'
+import {queryOmdb} from './Utils'
+import styles from './styles/index'
 
 class SearchContainer extends Component {
   constructor(props) {
@@ -17,27 +18,39 @@ class SearchContainer extends Component {
       query: e.target.value,
     })
   }
-  onsubmitQuery(e) {
+  handleToggleSearch (e) {
+    let hasSearched = !this.state.hasSearched
+    this.setState(Object.assign(this.state, {hasSearched, }))
+  }
+  onSubmitQuery(e) {
     e.preventDefault()
     let component = this
-    queryOmdb(this.state.query).then(data => {
+    queryOmdb(this.state.query).then( data => {
       component.setState({
         query: '',
-        hasSearched: true,
+        hasSearched: !component.state.hasSearched,
         movies: data,
       })
     })
   }
   render() {
-    if(this.state.hasSearched){
+    if (this.state.hasSearched){
       return(
-        <Results movies={this.state.movies} />
+        <div>
+          <button
+            onClick={ (e) => this.handleToggleSearch(e) }
+            style={styles.spaceB}
+            className="btn btn-default">
+            Search Again
+          </button>
+          <Results movies={this.state.movies} />
+        </div>
       )
     } else {
       return(
         <Search
-        handleSearchInput={(e) => this.onSearchInput(e)}
-        handleSubmitQuery={(e) => this.onSubmitQuery(e)}
+        handleSearchInput={ (e) => this.onSearchInput(e) }
+        handleSubmitQuery={ (e) => this.onSubmitQuery(e) }
         query={this.state.query} />
       )
     }
