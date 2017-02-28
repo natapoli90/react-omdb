@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h2>REACT OMDB</h2>
+        <h2><a href="/">OMDB (REACT)</a></h2>
         <SearchContainer />
       </div>
     );
