@@ -1,3 +1,5 @@
+For this exercise, I'm going to build a React app from scratch that will serve as a movie browser application, allowing users to enter a search term, and view results of movies via the OMDB api.
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
