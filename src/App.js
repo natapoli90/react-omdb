@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import './App.css';
 import SearchContainer from './SearchContainer'
+import styles from './styles/index'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div style={styles.transparentBg} className="jumbotron col-sm-12 text-center">
         <h2><a href="/">OMDB (REACT)</a></h2>
-        <SearchContainer />
+        <div className="col-sm-12" style={styles.space}>
+          <SearchContainer />
+        </div>
       </div>
     );
   }
